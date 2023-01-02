@@ -6,6 +6,7 @@
   "repository": "https://github.com/zarthus/custom-calendar.git",
   "author": "Jos Ahrens",
   "license": "MIT",
+  "private": false,
   "devDependencies": {
     "@types/node": "^18.11.18",
     "eslint-config-prettier": "^8.5.0",
