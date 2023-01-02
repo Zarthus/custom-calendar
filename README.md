@@ -38,7 +38,9 @@ npm install @zarthus/custom-calendar
 ## How to use
 
 ```typescript
-const myCalendar = new CalendarBuilder("Gregorian", new Week(["Monday", "Tuesday", "..."]))
+import { CalendarBuilder, BuilderMonth } from "@zarthus/custom-calendar"; 
+
+const myCalendar = CalendarBuilder.builder("Gregorian", ["Monday", "Tuesday", "..."])
     .addBuilderMonth(
         new BuilderMonth("January", 31)
             .addFestivity("New Years", 1)

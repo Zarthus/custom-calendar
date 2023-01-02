@@ -8,6 +8,10 @@ class CalendarBuilder {
     private starting_year: number = 1;
     private starting_day: number = 1;
 
+    static builder(name: string, weekdays: Array<string>) {
+        return new CalendarBuilder(name, new Week(weekdays));
+    }
+
     constructor(private name: string, private week: Week, private months: Array<Month> = []) {
         if (this.week.getDaysInWeek() === 0) {
             throw new BuilderError("You must have at least one day in a week");

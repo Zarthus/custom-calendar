@@ -6,6 +6,15 @@ import Week from "../../Week";
 
 const threeDayWeek = new Week(["Monday", "Tuesday", "Wednesday"]);
 
+test('static builder method works', () => {
+    const calendar = CalendarBuilder.builder("Simple", ["a", "b", "c"])
+        .addBuilderMonth(new BuilderMonth("first", 4))
+        .build();
+
+    expect(calendar.week.getDaysInWeek()).toBe(3);
+    expect(calendar.week.name(0)).toBe("a");
+});
+
 test('it builds a simple calendar', () => {
     const simple = new CalendarBuilder("Simple", threeDayWeek)
         .addMonth(new Month("first", 3, {}))
