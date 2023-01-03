@@ -24,6 +24,8 @@ Add your own custom calendar to your software using this library.
       a day off or just an observation, nor can you specify 
       non-working days in a Week object.
 - There is no definition of seasons
+- Weeks are not transitioned properly into new years, day 1 of year 1 begins with the first day of the week,
+    no matter if the previous year ended on a different day than the last.
 
 ### Caveats
 
