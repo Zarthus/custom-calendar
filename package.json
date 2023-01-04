@@ -1,6 +1,6 @@
 {
   "name": "@zarthus/custom-calendar",
-  "version": "0.3",
+  "version": "0.3.0",
   "description": "Custom Calendar functionality for e.g. worldbuilding",
   "type": "module",
   "repository": "https://github.com/zarthus/custom-calendar.git",
