@@ -27,6 +27,13 @@ test('advances properly to the next day', () => {
     expect(copy.getDayOfYear()).toBe(simpleCalendar.getDayOfYear() + 1)
 });
 
+test('advances properly to the next week', () => {
+    const copy = simpleCalendar.clone();
+
+    copy.advance(3);
+    expect(copy.current().weekDayName).toBe("w_one");
+});
+
 test('advances properly to the next month', () => {
     const copy = simpleCalendar.clone();
     copy.advance(copy.getMonth().days);
@@ -48,7 +55,7 @@ test('initializes a proper cursor', () => {
     const cursor = copy.current();
     expect(cursor.year).toBe(7);
     expect(cursor.day).toBe(7);
-    expect(cursor.weekDayName).toBe("w_one");
+    expect(cursor.weekDayName).toBe("w_three");
     expect(cursor.weeksPassed).toBe(7);
     expect(cursor.hasFestivity()).toBe(false);
     expect(cursor.getFestivity()).toBe(undefined);
@@ -57,7 +64,7 @@ test('initializes a proper cursor', () => {
     const cursor2 = copy.advance(1).current();
     expect(cursor2.year).toBe(7);
     expect(cursor2.day).toBe(8);
-    expect(cursor2.weekDayName).toBe("w_two");
+    expect(cursor2.weekDayName).toBe("w_one");
     expect(cursor2.weeksPassed).toBe(7);
     expect(cursor2.hasFestivity()).toBe(false);
     expect(cursor2.getFestivity()).toBe(undefined);
@@ -69,6 +76,38 @@ test('months are properly initialized', () => {
     expect(simpleCalendar.getDaysInEachMonth()[1]).toBe(7);
     expect(simpleCalendar.getDaysInEachMonth()[2]).toBe(9);
     expect(simpleCalendar.getDaysInEachMonth()[3]).toBe(7);
+});
+
+test('current() returns the correct week name', () => {
+    const copy = simpleCalendar.clone();
+
+    expect(copy.current().weekDayName).toBe("w_one");
+
+    copy.advance(1);
+    expect(copy.current().weekDayName).toBe("w_two");
+
+    copy.advance(1);
+    expect(copy.current().weekDayName).toBe("w_three");
+
+    copy.advance(1);
+    expect(copy.current().weekDayName).toBe("w_one");
+});
+
+test('is() returns true on current days, false if not', () => {
+    const copy = simpleCalendar.clone();
+
+    expect(copy.is(1, 1)).toBeTruthy();
+
+    copy.advance(3);
+
+    expect(copy.is(4, 1)).toBeTruthy();
+    expect(copy.is(5, 1)).toBeFalsy();
+
+    copy.advance(copy.getDaysInYear());
+
+    expect(copy.is(4, 2)).toBeTruthy();
+    expect(copy.is(4)).toBeTruthy();
+    expect(copy.is(4, 1)).toBeFalsy();
 });
 
 test('throws if navigating to the year -1', () => {

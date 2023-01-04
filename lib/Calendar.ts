@@ -37,6 +37,19 @@ class Calendar {
     }
 
     /**
+     * @param day the number of days passed this year
+     * @param year number|undefined the current year or undefined if the year doesn't matter
+     * @return boolean true if that is the current date, false if not.
+     */
+    is(day: number, year: number | undefined = undefined): boolean {
+        if (this.getDayOfYear() !== day) {
+            return false;
+        }
+
+        return year === undefined || this.year === year;
+    }
+
+    /**
      * Navigate forwards in the timeline, automatically incrementing years if necessary
      *
      * @param days number a postive number on how many days to navigate forwards
@@ -128,7 +141,8 @@ class Calendar {
      * @return number the current day of the present week
      */
     getDayOfWeek(): string {
-        const remainder = this.day % this.week.getDaysInWeek();
+        // this.day is 1 indexed, we need to remove 1 to ensure consistency, otherwise years start with the second day.
+        const remainder = (this.day - 1) % this.week.getDaysInWeek();
 
         return this.week.name(remainder);
     }
