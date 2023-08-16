@@ -9,7 +9,7 @@
   "private": false,
   "devDependencies": {
     "@types/node": "^20.2.5",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^9.0.0",
     "jest": "^29.3.1",
     "prettier": "^3.0.0",
     "ts-jest": "^29.0.3",
